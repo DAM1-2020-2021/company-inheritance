@@ -1,33 +1,21 @@
-package org.iesfm.company;
+package org.iesfm.company.composition;
 
 import java.util.Objects;
 
-public abstract class Employee {
+public class Employee {
     private int id;
     private String name;
     private String surname;
     private int workedHours;
+    private Position position;
 
-    public Employee(int id, String name, String surname, int workedHours) {
+    public Employee(int id, String name, String surname, int workedHours, Position position) {
         this.id = id;
         this.name = name;
         this.surname = surname;
         this.workedHours = workedHours;
+        this.position = position;
     }
-
-    public void logWork(int hours) {
-        workedHours += hours;
-    }
-
-    public void info() {
-        System.out.println("Datos del empleado:");
-        System.out.println("Id de empleado: " + id);
-        System.out.println("Nombre y apellidos: " + name + " " + surname);
-        System.out.println("Horas trabajadas: " + workedHours);
-        showSpecificInfo();
-    }
-
-    protected abstract void showSpecificInfo();
 
     public int getId() {
         return id;
@@ -61,16 +49,24 @@ public abstract class Employee {
         this.workedHours = workedHours;
     }
 
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Employee employee = (Employee) o;
-        return getId() == employee.getId() && getWorkedHours() == employee.getWorkedHours() && Objects.equals(getName(), employee.getName()) && Objects.equals(getSurname(), employee.getSurname());
+        return getId() == employee.getId() && getWorkedHours() == employee.getWorkedHours() && Objects.equals(getName(), employee.getName()) && Objects.equals(getSurname(), employee.getSurname()) && Objects.equals(getPosition(), employee.getPosition());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getSurname(), getWorkedHours());
+        return Objects.hash(getId(), getName(), getSurname(), getWorkedHours(), getPosition());
     }
 }

@@ -1,5 +1,6 @@
-package org.iesfm.company;
+package org.iesfm.company.inheritance;
 
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Objects;
 
@@ -10,6 +11,16 @@ public class Company {
     public Company(String name, List<Employee> employees) {
         this.name = name;
         this.employees = employees;
+    }
+
+    public List<Programmer> getProgrammers() {
+        List<Programmer> programmers = new LinkedList<>();
+        for(Employee employee: employees) {
+            if(employee instanceof Programmer) {
+                programmers.add((Programmer) employee);
+            }
+        }
+        return programmers;
     }
 
     public String getName() {

@@ -1,4 +1,4 @@
-package org.iesfm.company;
+package org.iesfm.company.inheritance;
 
 import java.util.Objects;
 import java.util.Set;
